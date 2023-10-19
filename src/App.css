@@ -7,3 +7,35 @@ body {
   background-color: #291e37;
   min-height: 100vh;
 }
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #eff4e9;
+  color: #291e37;
+  font-weight: 500;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  padding: 0.5rem;
+}
