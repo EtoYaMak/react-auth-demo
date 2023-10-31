@@ -5,7 +5,7 @@ import { BiCheck, BiX, BiInfoCircle } from "react-icons/bi";
 import axios from "axios";
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/api/register";
 function Register() {
   const userRef = useRef();
   const errRef = useRef();
@@ -39,6 +39,7 @@ function Register() {
   useEffect(() => {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // if button enabled with JS hack
@@ -49,22 +50,20 @@ function Register() {
       return;
     }
     try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      // TODO: remove console.logs before deployment
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
-      setSuccess(true);
-      //clear state and controlled inputs
-      setUser("");
-      setPwd("");
-      setMatchPwd("");
+      const response = await axios.post(REGISTER_URL, {
+        username: user,
+        password: pwd,
+      });
+
+      if (response.data.message === "User registered successfully") {
+        setSuccess(true);
+        // Clear state and controlled inputs
+        setUser("");
+        setPwd("");
+        setMatchPwd("");
+      } else {
+        setErrMsg("Registration Failed");
+      }
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -77,7 +76,7 @@ function Register() {
     }
   };
   return (
-    <div className="hero xl:mt-[10vh] mt-[5vh] bg-none">
+    <div className="hero xl:mt-[10vh] mt-[5vh] bg-inherit">
       <div className="hero-content flex-col w-full xl:flex-row xl:w-fit xl:gap-32 gap-10 ">
         <p
           ref={errRef}
@@ -88,23 +87,23 @@ function Register() {
         >
           {errMsg}
         </p>
-        <div className="text-center xl:text-left text-[#DFBB8E] select-none">
-          <h1 className="text-5xl font-bold">Register</h1>
+        <div className="text-center xl:text-left yellowtext select-none ">
+          <h1 className="text-5xl font-bold uppercase">Register</h1>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-[#B53C66]">
-          <form className="card-body">
+        <div className="card flex-shrink-0 w-full max-w-md shadow-2xl white ">
+          <form className="card-body white rounded-xl">
             <div className="form-control">
               <label htmlFor="username" className="label flex justify-start">
-                <span className="text-md font-medium text-[#291E37]">
+                <span className="text-md font-medium text-[#202b42]">
                   Username
                 </span>
                 <BiCheck
                   size={24}
-                  className={`text-[#291E37] ${validName ? "valid" : "hide"}`}
+                  className={`text-[#202b42] ${validName ? "valid" : "hide"}`}
                 />
                 <BiX
                   size={24}
-                  className={`text-[#291E37] ${
+                  className={`text-[#202b42] ${
                     validName || !user ? "hide" : "invalid"
                   } `}
                 />
@@ -114,7 +113,8 @@ function Register() {
                 id="username"
                 ref={userRef}
                 placeholder="Username"
-                className="input input-ghost bg-[#291E37] focus:bg-[#DFBB8E] focus:text-[#291E37] text-[#EFF4E9] placeholder:text-[#DFBB8E]"
+                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
                 autoComplete="off"
                 onChange={(e) => setUser(e.target.value)}
                 value={user}
@@ -129,7 +129,7 @@ function Register() {
                   userFocus && user && !validName ? "instructions" : "offscreen"
                 }`}
               >
-                <BiInfoCircle size={18} className="text-[#291E37] mr-1 w-8" />
+                <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
                 4 to 24 characters.
                 <br />
                 Must begin with a letter.
@@ -144,18 +144,19 @@ function Register() {
                 </span>
                 <BiCheck
                   size={24}
-                  className={`text-[#291E37] ${validPwd ? "valid" : "hide"}`}
+                  className={`text-[#202b42] ${validPwd ? "valid" : "hide"}`}
                 />
                 <BiX
                   size={24}
-                  className={`text-[#291E37] ${
+                  className={`text-[#202b42] ${
                     validPwd || !pwd ? "hide" : "invalid"
                   } `}
                 />
               </label>
               <input
                 placeholder="Password"
-                className="input input-ghost bg-[#291E37] focus:bg-[#DFBB8E] focus:text-[#291E37] text-[#EFF4E9] placeholder:text-[#DFBB8E]"
+                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
                 type="password"
                 id="password"
                 onChange={(e) => setPwd(e.target.value)}
@@ -171,7 +172,7 @@ function Register() {
                   pwdFocus && !validPwd ? "instructions" : "offscreen"
                 }`}
               >
-                <BiInfoCircle size={18} className="text-[#291E37] mr-1 w-8" />
+                <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
                 8 to 24 characters.
                 <br />
                 Must include uppercase and lowercase letters, a number and a
@@ -187,20 +188,21 @@ function Register() {
                 </span>
                 <BiCheck
                   size={24}
-                  className={`text-[#291E37] ${
+                  className={`text-[#202b42] ${
                     validMatch && matchPwd ? "valid" : "hide"
                   }`}
                 />
                 <BiX
                   size={24}
-                  className={`text-[#291E37] ${
+                  className={`text-[#202b42] ${
                     validMatch || !matchPwd ? "hide" : "invalid"
                   } `}
                 />
               </label>
               <input
                 placeholder="Confirm Password"
-                className="input input-ghost bg-[#291E37] focus:bg-[#DFBB8E] focus:text-[#291E37] text-[#EFF4E9] placeholder:text-[#DFBB8E]"
+                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
                 type="password"
                 id="confirm_pwd"
                 onChange={(e) => setMatchPwd(e.target.value)}
@@ -216,12 +218,15 @@ function Register() {
                   matchFocus && !validMatch ? "instructions" : "offscreen"
                 }`}
               >
-                <BiInfoCircle size={18} className="text-[#291E37] mr-1 w-8" />
+                <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
                 Must match the first password input field.
               </p>
             </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#DFBB8E] text-[#291E37] hover:text-white text-md ">
+            <div className="form-control w-fit mx-auto mt-6 boxshadow1 rounded-xl">
+              <button
+                onClick={handleSubmit}
+                className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 "
+              >
                 Register
               </button>
             </div>

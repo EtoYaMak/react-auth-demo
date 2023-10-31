@@ -4,15 +4,15 @@
 
 body {
   margin: 0;
-  background-color: #291e37;
+  background-color: hsl(210, 100%, 40%);
   min-height: 100vh;
 }
 
 .instructions {
   font-size: 0.75rem;
   border-radius: 0.5rem;
-  background: #eff4e9;
-  color: #291e37;
+  background: #007ffa;
+  color: #fdfafb;
   font-weight: 500;
   padding: 0.25rem;
   position: relative;
@@ -38,4 +38,43 @@ body {
 
 .errmsg {
   padding: 0.5rem;
+}
+
+.blue {
+  background-color: #007ffa;
+}
+.blue1 {
+  background-color: hsl(210, 100%, 40%);
+}
+.yellow {
+  background-color: rgb(217, 220, 51);
+}
+.yellowtext {
+  color: #d9dc33;
+}
+.pink {
+  background-color: #e24275;
+}
+.pinktext {
+  color: #e24275;
+}
+.white {
+  background-color: #fdfafb;
+}
+.whitetext {
+  color: #fdfafb;
+}
+.black {
+  color: rgb(32, 43, 66);
+}
+
+.boxshadow1:hover {
+  box-shadow: rgba(32, 43, 66, 0.4) 2px 2px, rgba(32, 43, 66, 0.3) 4px 4px,
+    rgba(32, 43, 66, 0.2) 6px 6px, rgba(32, 43, 66, 0.1) 12px 12px,
+    rgba(32, 43, 66, 0.05) 18px 18px;
+}
+.boxshadow2:focus {
+  box-shadow: rgba(32, 43, 66, 0.4) 2px 2px, rgba(32, 43, 66, 0.3) 4px 4px,
+    rgba(32, 43, 66, 0.2) 6px 6px, rgba(32, 43, 66, 0.1) 12px 12px,
+    rgba(32, 43, 66, 0.05) 18px 18px;
 }

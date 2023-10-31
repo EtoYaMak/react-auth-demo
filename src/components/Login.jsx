@@ -1,14 +1,41 @@
-import React from "react";
-
+import React, { useState } from "react";
+import axios from "axios";
+const LOGIN_URL = "/api/login";
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(LOGIN_URL, {
+        username: username,
+        password: password,
+      });
+
+      if (response.data.message === "Login successful") {
+        // Handle successful login, for example, redirect to a dashboard.
+        // You can also set a user token or session here.
+        // For this demo, let's just display a success message.
+        alert("Login successful");
+      } else {
+        setErrMsg("Login failed");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrMsg("An error occurred during login");
+    }
+  };
   return (
-    <div className="hero mt-10 bg-none">
-      <div className="hero-content flex-col w-full xl:flex-row-reverse xl:w-fit ">
-        <div className="text-center xl:text-left text-[#DFBB8E] select-none">
-          <h1 className="text-5xl font-bold">Login</h1>
-          <p className="py-6">Test</p>
+    <div className="hero xl:mt-[10vh] mt-[5vh] bg-inherit">
+      <div className="hero-content flex-col w-full xl:flex-row xl:w-fit xl:gap-32 gap-10">
+        <p className=""></p>
+        <div className="text-center xl:text-left yellowtext  select-none">
+          <h1 className="text-5xl font-bold uppercase">Login</h1>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-[#B53C66]">
+        <div className="card flex-shrink-0 w-full max-w-md shadow-2xl white">
           <form className="card-body">
             <div className="form-control">
               <label className="label">
@@ -19,7 +46,8 @@ function Login() {
               <input
                 type="text"
                 placeholder="Username"
-                className="input input-ghost bg-[#291E37] focus:bg-[#DFBB8E] focus:text-[#291E37] text-[#EFF4E9] placeholder:text-[#DFBB8E]"
+                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9] boxshadow2
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide"
                 required
               />
             </div>
@@ -32,7 +60,8 @@ function Login() {
               <input
                 type="password"
                 placeholder="Password"
-                className="input input-ghost bg-[#291E37] focus:bg-[#DFBB8E] focus:text-[#291E37] text-[#EFF4E9] placeholder:text-[#DFBB8E]"
+                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9] boxshadow2
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide"
                 required
               />
               <label className="">
@@ -44,8 +73,11 @@ function Login() {
                 </a>
               </label>
             </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#DFBB8E] text-[#291E37] hover:text-white text-md ">
+            <div className="form-control w-fit mx-auto mt-6 boxshadow1 rounded-xl">
+              <button
+                onClick={handleLogin}
+                className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 "
+              >
                 Login
               </button>
             </div>

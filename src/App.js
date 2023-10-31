@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 function App() {
   return (
-    <div className="App bg-[#291E37] ">
+    <div className="App ">
       <Navbar />
       <Routes>
         <Route index element={<Register />} />
