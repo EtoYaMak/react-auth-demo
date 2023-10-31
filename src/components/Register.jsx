@@ -2,10 +2,10 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 
 import { BiCheck, BiX, BiInfoCircle } from "react-icons/bi";
-import axios from "axios";
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/api/register";
+
 function Register() {
   const userRef = useRef();
   const errRef = useRef();
@@ -40,55 +40,14 @@ function Register() {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // if button enabled with JS hack
-    const v1 = USER_REGEX.test(user);
-    const v2 = PWD_REGEX.test(pwd);
-    if (!v1 || !v2) {
-      setErrMsg("Invalid Entry");
-      return;
-    }
-    try {
-      const response = await axios.post(REGISTER_URL, {
-        username: user,
-        password: pwd,
-      });
-
-      if (response.data.message === "User registered successfully") {
-        setSuccess(true);
-        // Clear state and controlled inputs
-        setUser("");
-        setPwd("");
-        setMatchPwd("");
-      } else {
-        setErrMsg("Registration Failed");
-      }
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
-      } else {
-        setErrMsg("Registration Failed");
-      }
-      errRef.current.focus();
-    }
-  };
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-2/3 min-w-fit my-10">
-        <p
-          ref={errRef}
-          className={`text-sm select-none bg-[#EFF4E9] text-[#B53C66] rounded-lg ${
-            errMsg ? "errmsg" : "offescreen"
-          }`}
-          aria-live="assertive"
-        >
-          {errMsg}
-        </p>
-        <div className="text-center xl:text-left yellowtext select-none ">
+        <div className="text-center xl:text-left yellowtext select-none backdrop-blur-[1px] w-fit mx-auto rounded-xl p-2">
           <h1 className="text-5xl font-bold uppercase">Register</h1>
+          <p className="text-white opacity-50 italic text-sm">
+            This is a frontend demo and has no backend functionality!
+          </p>
         </div>
       </div>
       <form className="rounded-xl white shadow-2xl p-8 space-y-4 h-fit w-full sm:w-[50vw]">
@@ -219,10 +178,7 @@ function Register() {
           </p>
         </div>
         <div className="form-control w-fit mx-auto mt-6 boxshadow1 rounded-xl bg-transparent">
-          <button
-            onClick={handleSubmit}
-            className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 "
-          >
+          <button className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 ">
             Register
           </button>
         </div>

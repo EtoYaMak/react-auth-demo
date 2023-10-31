@@ -7,9 +7,13 @@
 }
 body {
   margin: 0;
-  background-color: hsl(210, 100%, 40%);
+  background-color: hsl(210, 100%, 25%);
   height: 100vh;
   width: auto;
+}
+.background-svg-ten {
+  background-image: url("../public/ttten.svg");
+  background-size: cover;
 }
 .instructions {
   font-size: 0.75rem;

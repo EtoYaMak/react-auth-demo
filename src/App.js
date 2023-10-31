@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 function App() {
   return (
-    <div className="App ">
+    <div className="App background-svg-ten h-[100vh]">
       <Navbar />
       <Routes>
         <Route index element={<Register />} />

@@ -8,11 +8,11 @@ function Navbar() {
           className="px-4 py-2 normal-case text-2xl rounded-xl hover:text-[#fdfafb] hover:bg-transparent ease-in-out duration-200 hover:scale-[101%] yellowtext"
           href="/"
         >
-          react-auth-demo
+          FrontendAuthDemo
         </a>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 yellowtext">
           <li>
             <a
               href="/login"
