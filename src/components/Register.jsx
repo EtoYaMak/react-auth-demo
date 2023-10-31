@@ -76,8 +76,8 @@ function Register() {
     }
   };
   return (
-    <div className="hero xl:mt-[10vh] mt-[5vh] bg-inherit">
-      <div className="hero-content flex-col w-full xl:flex-row xl:w-fit xl:gap-32 gap-10 ">
+    <div className="flex flex-col justify-center items-center">
+      <div className="w-2/3 min-w-fit my-10">
         <p
           ref={errRef}
           className={`text-sm select-none bg-[#EFF4E9] text-[#B53C66] rounded-lg ${
@@ -90,149 +90,143 @@ function Register() {
         <div className="text-center xl:text-left yellowtext select-none ">
           <h1 className="text-5xl font-bold uppercase">Register</h1>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-md shadow-2xl white ">
-          <form className="card-body white rounded-xl white">
-            <div className="form-control">
-              <label htmlFor="username" className="label flex justify-start">
-                <span className="text-md font-medium text-[#202b42]">
-                  Username
-                </span>
-                <BiCheck
-                  size={24}
-                  className={`text-[#202b42] ${validName ? "valid" : "hide"}`}
-                />
-                <BiX
-                  size={24}
-                  className={`text-[#202b42] ${
-                    validName || !user ? "hide" : "invalid"
-                  } `}
-                />
-              </label>
-              <input
-                type="text"
-                id="username"
-                ref={userRef}
-                placeholder="Username"
-                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
-                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
-                autoComplete="off"
-                onChange={(e) => setUser(e.target.value)}
-                value={user}
-                required
-                aria-invalid={validName ? "false" : "true"}
-                aria-describedby="uidnote"
-                onFocus={() => setUserFocus(true)}
-                onBlur={() => setUserFocus(false)}
-              />
-              <p
-                className={`flex text-sm text-white py-2 select-none ${
-                  userFocus && user && !validName ? "instructions" : "offscreen"
-                }`}
-              >
-                <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
-                4 to 24 characters.
-                <br />
-                Must begin with a letter.
-                <br />
-                Letters, numbers, underscores, hyphens allowed.
-              </p>
-            </div>
-            <div className="form-control">
-              <label className="label flex justify-start">
-                <span className="text-md font-medium text-[#291E37]">
-                  Password
-                </span>
-                <BiCheck
-                  size={24}
-                  className={`text-[#202b42] ${validPwd ? "valid" : "hide"}`}
-                />
-                <BiX
-                  size={24}
-                  className={`text-[#202b42] ${
-                    validPwd || !pwd ? "hide" : "invalid"
-                  } `}
-                />
-              </label>
-              <input
-                placeholder="Password"
-                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
-                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
-                type="password"
-                id="password"
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                required
-                aria-invalid={validPwd ? "false" : "true"}
-                aria-describedby="pwdnote"
-                onFocus={() => setPwdFocus(true)}
-                onBlur={() => setPwdFocus(false)}
-              />
-              <p
-                className={`flex text-sm text-white py-2 select-none ${
-                  pwdFocus && !validPwd ? "instructions" : "offscreen"
-                }`}
-              >
-                <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
-                8 to 24 characters.
-                <br />
-                Must include uppercase and lowercase letters, a number and a
-                special character.
-                <br />
-                Allowed special characters: ! @ # $ %
-              </p>
-            </div>
-            <div className="form-control">
-              <label htmlFor="confirm_pwd" className="label flex justify-start">
-                <span className="text-md font-medium text-[#291E37]">
-                  Confirm Password
-                </span>
-                <BiCheck
-                  size={24}
-                  className={`text-[#202b42] ${
-                    validMatch && matchPwd ? "valid" : "hide"
-                  }`}
-                />
-                <BiX
-                  size={24}
-                  className={`text-[#202b42] ${
-                    validMatch || !matchPwd ? "hide" : "invalid"
-                  } `}
-                />
-              </label>
-              <input
-                placeholder="Confirm Password"
-                className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
-                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
-                type="password"
-                id="confirm_pwd"
-                onChange={(e) => setMatchPwd(e.target.value)}
-                value={matchPwd}
-                required
-                aria-invalid={validMatch ? "false" : "true"}
-                aria-describedby="confirmnote"
-                onFocus={() => setMatchFocus(true)}
-                onBlur={() => setMatchFocus(false)}
-              />
-              <p
-                className={`flex text-sm text-white py-2 select-none ${
-                  matchFocus && !validMatch ? "instructions" : "offscreen"
-                }`}
-              >
-                <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
-                Must match the first password input field.
-              </p>
-            </div>
-            <div className="form-control w-fit mx-auto mt-6 boxshadow1 rounded-xl">
-              <button
-                onClick={handleSubmit}
-                className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 "
-              >
-                Register
-              </button>
-            </div>
-          </form>
-        </div>
       </div>
+      <form className="rounded-xl white shadow-2xl p-8 space-y-4 h-fit w-full sm:w-[50vw]">
+        <div className="form-control ">
+          <label htmlFor="username" className="label flex justify-start">
+            <span className="text-md font-medium text-[#202b42]">Username</span>
+            <BiCheck
+              size={24}
+              className={`text-[#202b42] ${validName ? "valid" : "hide"}`}
+            />
+            <BiX
+              size={24}
+              className={`text-[#202b42] ${
+                validName || !user ? "hide" : "invalid"
+              } `}
+            />
+          </label>
+          <input
+            type="text"
+            id="username"
+            ref={userRef}
+            placeholder="Username"
+            className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
+            autoComplete="off"
+            onChange={(e) => setUser(e.target.value)}
+            value={user}
+            required
+            aria-invalid={validName ? "false" : "true"}
+            aria-describedby="uidnote"
+            onFocus={() => setUserFocus(true)}
+            onBlur={() => setUserFocus(false)}
+          />
+          <p
+            className={`flex text-sm text-white py-2 select-none  ${
+              userFocus && user && !validName ? "instructions" : "offscreen"
+            }`}
+          >
+            <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
+            4 to 24 characters.
+            <br />
+            Must begin with a letter.
+            <br />
+            Letters, numbers, underscores, hyphens allowed.
+          </p>
+        </div>
+        <div className="form-control">
+          <label className="label flex justify-start">
+            <span className="text-md font-medium text-[#291E37]">Password</span>
+            <BiCheck
+              size={24}
+              className={`text-[#202b42] ${validPwd ? "valid" : "hide"}`}
+            />
+            <BiX
+              size={24}
+              className={`text-[#202b42] ${
+                validPwd || !pwd ? "hide" : "invalid"
+              } `}
+            />
+          </label>
+          <input
+            placeholder="Password"
+            className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2 "
+            type="password"
+            id="password"
+            onChange={(e) => setPwd(e.target.value)}
+            value={pwd}
+            required
+            aria-invalid={validPwd ? "false" : "true"}
+            aria-describedby="pwdnote"
+            onFocus={() => setPwdFocus(true)}
+            onBlur={() => setPwdFocus(false)}
+          />
+          <p
+            className={`flex text-sm text-white py-2 select-none ${
+              pwdFocus && !validPwd ? "instructions" : "offscreen"
+            }`}
+          >
+            <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8 " />
+            8 to 24 characters.
+            <br />
+            Must include uppercase and lowercase letters, a number and a special
+            character.
+            <br />
+            Allowed special characters: ! @ # $ %
+          </p>
+        </div>
+        <div className="form-control">
+          <label htmlFor="confirm_pwd" className="label flex justify-start">
+            <span className="text-md font-medium text-[#291E37]">
+              Confirm Password
+            </span>
+            <BiCheck
+              size={24}
+              className={`text-[#202b42] ${
+                validMatch && matchPwd ? "valid" : "hide"
+              }`}
+            />
+            <BiX
+              size={24}
+              className={`text-[#202b42] ${
+                validMatch || !matchPwd ? "hide" : "invalid"
+              } `}
+            />
+          </label>
+          <input
+            placeholder="Confirm Password"
+            className="input input-ghost blue1 focus:bg-[#202b42] focus:text-[#fdfafb] text-[#EFF4E9]
+                placeholder:text-[#fdfafb] placeholder:opacity-70 focus:font-semibold focus:tracking-wide tracking-wide boxshadow2"
+            type="password"
+            id="confirm_pwd"
+            onChange={(e) => setMatchPwd(e.target.value)}
+            value={matchPwd}
+            required
+            aria-invalid={validMatch ? "false" : "true"}
+            aria-describedby="confirmnote"
+            onFocus={() => setMatchFocus(true)}
+            onBlur={() => setMatchFocus(false)}
+          />
+          <p
+            className={`flex text-sm text-white py-2 select-none  ${
+              matchFocus && !validMatch ? "instructions" : "offscreen"
+            }`}
+          >
+            <BiInfoCircle size={18} className="text-[#d9dc33] mr-1 w-8" />
+            Must match the first password input field.
+          </p>
+        </div>
+        <div className="form-control w-fit mx-auto mt-6 boxshadow1 rounded-xl bg-transparent">
+          <button
+            onClick={handleSubmit}
+            className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 "
+          >
+            Register
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -2,10 +2,10 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div className="navbar blue yellowtext">
-      <div className="flex-1">
+    <div className="navbar blue">
+      <div className="flex-1 rounded-xl ">
         <a
-          className="btn btn-ghost normal-case text-2xl  hover:text-[#fdfafb] hover:bg-transparent"
+          className="px-4 py-2 normal-case text-2xl rounded-xl hover:text-[#fdfafb] hover:bg-transparent ease-in-out duration-200 hover:scale-[101%] yellowtext"
           href="/"
         >
           react-auth-demo
