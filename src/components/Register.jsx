@@ -178,7 +178,7 @@ function Register() {
           </p>
         </div>
         <div className="form-control w-fit mx-auto mt-6 boxshadow1 rounded-xl bg-transparent">
-          <button className="btn btn-ghost bg-[#EFF4E9] hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 ">
+          <button className="btn btn-ghost bg-none hover:bg-[#202b42]  text-[#202b42] hover:text-[#fdfafb]  text-md p-4 ">
             Register
           </button>
         </div>
