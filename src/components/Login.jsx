@@ -36,7 +36,7 @@ function Login() {
           <h1 className="text-5xl font-bold uppercase">Login</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-md shadow-2xl white">
-          <form className="card-body">
+          <form className="card-body white">
             <div className="form-control">
               <label className="label">
                 <span className="text-md font-medium text-[#291E37]">

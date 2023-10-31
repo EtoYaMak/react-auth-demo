@@ -91,7 +91,7 @@ function Register() {
           <h1 className="text-5xl font-bold uppercase">Register</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-md shadow-2xl white ">
-          <form className="card-body white rounded-xl">
+          <form className="card-body white rounded-xl white">
             <div className="form-control">
               <label htmlFor="username" className="label flex justify-start">
                 <span className="text-md font-medium text-[#202b42]">
